@@ -1,0 +1,169 @@
+<div data-section-id="{{ section.id }}" data-section-type="collection-template">
+{% assign header_title = collection.title %}
+{% include 'page_header' with header_title %}
+<div class="wrapper wrapper--margins">
+
+  
+  {% if collection.image %}
+    <div class="collection-image" style="display: none;">
+    {% assign img_url = collection.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+      <img class="no-js lazyload"
+            data-src="{{ img_url }}"
+            data-widths="[320, 360, 375, 414, 568, 684, 720, 732, 736, 768, 1024, 1200, 1296, 1512, 1728, 1944, 2048, 4472]"
+            data-aspectratio="{{ collection.image.aspect_ratio }}"
+            data-sizes="auto"
+            data-parent-fit="width"
+            alt="{{ collection.image.alt }}" />
+            <noscript>
+              <img src="{{ collection.image | img_url: '1200x' }}"
+                srcset="{{ collection.image | img_url: '1200x' }} 1x, {{ collection.image | img_url: '1200x', scale: 2 }} 2x"
+                alt="{{ collection.image.alt }}"  style="opacity:1;">
+            </noscript>
+    </div>
+  {% endif %}
+
+  <div id="bc-sf-filter-tree-h"></div>
+  <div id="bc-sf-filter-tree-mobile"></div>
+  <div id="bc-sf-filter-tree"></div>
+
+  {%- assign limit = section.settings.grid | times: section.settings.rows -%}
+  {% paginate collection.products by limit %}
+
+    <div id="bc-sf-filter-products" class="collection-list grid-uniform {% unless shop.products_count == 0 %} small-gutter {% endunless %}" data-bc-sort="{{ collection.default_sort_by }}">
+
+      {% if collection.default_sort_by != 'best-selling' %}
+
+        {% case section.settings.grid %}
+        {% when '2' %}
+          {%- assign grid_item_width = 'small--one-whole medium--one-half large--one-half' -%}
+        {% when '3' %}
+          {%- assign grid_item_width = 'small--one-whole medium--one-third large--one-third' -%}
+        {% when '4' %}
+          {%- assign grid_item_width = 'small--one-half medium--one-quarter large--one-quarter' -%}
+        {% when '5' %}
+          {%- assign grid_item_width = 'small--one-half medium--one-third large--one-fifth' -%}
+        {% endcase %}
+
+        {% for product in collection.products %}
+
+          {% include 'product-grid-item', grid_item_width: grid_item_width %}
+			
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+
+    <div id="bc-sf-filter-bottom-pagination"></div>
+    <div id="bc-sf-filter-load-more"></div>
+
+  {% endpaginate %}
+</div>
+
+</div>
+
+<script>
+  // Declare bcSfFilterConfig variable
+  var bcSfFilterConfig = {
+    label: {
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Sorting" {% endunless %},
+      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Best Selling" {% endunless %},
+      sorting_featured: {% assign temp = 'collections.sorting.featured' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Featured" {% endunless %},
+      sorting_title_ascending: {% assign temp = 'collections.sorting.az' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Alphabetically, A-Z" {% endunless %},
+      sorting_title_descending: {% assign temp = 'collections.sorting.za' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Alphabetically, Z-A" {% endunless %},
+      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Lowest Price" {% endunless %},
+      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Highest Price" {% endunless %},
+      sorting_date_ascending: {% assign temp = 'collections.sorting.date_ascending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Date, Old to New" {% endunless %},
+      sorting_date_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Date, New to Old" {% endunless %},
+      sorting_sale_descending: {% assign temp = 'collections.sorting.sale_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "% Off" {% endunless %},
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Relevance" {% endunless %},
+
+      sale: "{{ 'products.product.on_sale' | t }}",
+      sold_out: "{{ 'products.product.sold_out' | t }}",
+      regular_price: "{{ 'products.product.regular_price' | t }}",
+      sale_price: "{{ 'products.product.sale_price' | t }}",
+      from_price: "{{ 'products.product.on_sale_from' | t }}",
+    },
+    custom: {
+      products_per_page: {{ limit }},
+      products_per_row: {{ section.settings.grid }},
+      row_number: {{ section.settings.rows }},
+      {% for num in (1..6) %}
+      "placeholder_svg_tag_{{ num }}": '{{ 'product-' | append: num | placeholder_svg_tag }}',
+      {% endfor %}
+    }
+  };
+</script>
+
+      {% schema %}
+      
+  {
+    "name": "Collection Pages",
+    "settings": [
+    	{
+        "type": "select",
+        "id": "grid",
+        "label": "Number of product columns",
+        "default": "3",
+        "options": [
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "rows",
+        "label": "Rows per page",
+        "default": "6",
+        "options": [
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "7",
+            "label": "7"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "10",
+            "label": "10"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

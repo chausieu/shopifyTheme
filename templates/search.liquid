@@ -1,0 +1,56 @@
+{% capture header_title %} {{ 'general.search.title' | t }} {% endcapture %}
+{% include 'page_header' with header_title %}
+
+<div class="wrapper wrapper--margins">
+
+  <form action="/search" method="get" class="search-bar text-center" role="search">
+    <h2 class="home-section-title less-margin">{{ 'general.search.label' | t }}</h2>
+    <input type="search" name="q" value="{{ search.terms | escape }}">
+    <button type="submit" class="btn btn--regular btn--dark btn--fill">
+      {{ 'general.search.submit' | t }}
+    </button>
+    <p class="bc-sf-search-result-number"></p>
+  </form>
+
+  <div id="bc-sf-filter-tree-h"></div>
+  <div id="bc-sf-filter-tree-mobile"></div>
+  <div id="bc-sf-filter-tree"></div>
+  
+  <div id="bc-sf-filter-products" class="collection-list grid-uniform small-gutter"></div>
+
+  <div id="bc-sf-filter-bottom-pagination"></div>
+  <div id="bc-sf-filter-load-more"></div>
+
+</div>
+
+<script>
+  // Declare bcSfFilterConfig variable
+  var bcSfFilterConfig = {
+    label: {
+      sorting: {% assign temp = 'collections.sorting.title' | t  %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Sorting" {% endunless %},
+      sorting_best_selling: {% assign temp = 'collections.sorting.best_selling' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Best Selling" {% endunless %},
+      sorting_featured: {% assign temp = 'collections.sorting.featured' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Featured" {% endunless %},
+      sorting_title_ascending: {% assign temp = 'collections.sorting.az' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Alphabetically, A-Z" {% endunless %},
+      sorting_title_descending: {% assign temp = 'collections.sorting.za' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Alphabetically, Z-A" {% endunless %},
+      sorting_price_ascending: {% assign temp = 'collections.sorting.price_ascending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Lowest Price" {% endunless %},
+      sorting_price_descending: {% assign temp = 'collections.sorting.price_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Highest Price" {% endunless %},
+      sorting_date_ascending: {% assign temp = 'collections.sorting.date_ascending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Date, Old to New" {% endunless %},
+      sorting_date_descending: {% assign temp = 'collections.sorting.date_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Date, New to Old" {% endunless %},
+      sorting_sale_descending: {% assign temp = 'collections.sorting.sale_descending' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "% Off" {% endunless %},
+      sorting_relevance: {% assign temp = 'collections.sorting.relevance' | t %} {% unless temp contains 'translation missing'  %} "{{ temp }}" {% else %} "Relevance" {% endunless %},
+
+      sale: "{{ 'products.product.on_sale' | t }}",
+      sold_out: "{{ 'products.product.sold_out' | t }}",
+      regular_price: "{{ 'products.product.regular_price' | t }}",
+      sale_price: "{{ 'products.product.sale_price' | t }}",
+      from_price: "{{ 'products.product.on_sale_from' | t }}",
+    },
+    custom: {
+      products_per_page: 24,
+      products_per_row: 3,
+      {% for num in (1..6) %}
+      "placeholder_svg_tag_{{ num }}": '{{ 'product-' | append: num | placeholder_svg_tag }}',
+      {% endfor %}
+    }
+  };
+</script>

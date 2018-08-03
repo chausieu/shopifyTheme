@@ -1,0 +1,15 @@
+{% assign header_title = page.title %}
+{% include 'page_header' with header_title %}
+
+<!--begin-custom-css-->
+  {{ 'custom.css' | asset_url | stylesheet_tag }} 
+<!--end-custom-css-->
+
+<div class="wrapper wrapper--margins wrapper__article">
+  <div class="rte">
+    {{ page.content }}
+  </div>
+  {% if page.handle == "downloads"%}
+  	{% include 'download-page'%}
+  	{% endif %}
+</div>

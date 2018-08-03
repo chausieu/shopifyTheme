@@ -1,0 +1,173 @@
+<!-- Begin testing uncomplicated category-based breadcrumb -->
+<nav id="uncomplicated-breadcrumbs" class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+link_catroot: {{ link_catroot }}<br/>
+text_catroot: {{ text_catroot }}<br/>
+if collection: 
+{% assign pagename = "" %}
+{% if collection %}
+  	true<br/>
+	capture url: {% capture url %}/collections/{{ collection.handle }}{% endcapture %} <br/>
+	collection name: {{ collection.title }}<br/>
+   	{% assign pagename = collection.title %}
+{% else %}
+  	false<br/>
+  	if link_catall: 
+	{% if link_catall %}
+ 		true<br/>
+		link_catall: {{link_catall}}<br/>
+  	{% else %}
+  		false<br/>
+  		uncomplicated would do this: /collections/all<br/>
+	{% endif %}
+  	if text_catall: 
+    {% if text_catall %}
+  		true<br/>
+  		text_catall: {{ text_catall }}<br/>
+  	{% else %}
+  		false<br/>
+  		uncomplicated would do this: All Products<br/>
+  	{% endif %}
+{% endif %}
+if current_tags: 
+{% if current_tags %}
+	true<br/>
+  	current_tags {{ current_tags }}<br/>
+{% else %}
+  	false<br/>
+{% endif %}
+
+if product: 
+{% if product %}
+	true<br/>
+  	product.title: {{ product.title | truncate: 28 }}
+  	{% assign pagename = product.title %}
+{% else %}
+  	false<br/>
+{% endif %}  
+  
+if page:
+{% if page %}
+  true<br/>
+  page.title: {{ page.title }}<br/>
+  {% assign pagename = page.title %}
+{% else %}
+  false<br/>
+{% endif %}
+pagename: {{ pagename }}<br/><br/><br/>
+  
+<div>
+  <br/><br/>
+  Main Menu:<br/>
+{% assign menu = linklists.main-menu %}
+
+{{ menu.title }}: {{ menu.levels }}<br/>
+{% assign root = "" %}
+{% assign found = false %}
+{% assign firstchild = "" %}
+{% for link in menu.links %}
+  &nbsp;&nbsp;&nbsp;&nbsp;{{ link.title }}: {{ link.levels }}<br/>
+  {% if link.title == pagename %}
+		{% assign breadcrumb = pagename %}
+  		{% assign found = true %}
+	{% else %}
+  		{% if found == false %}
+  			{% assign breadcrumb = link.title %}
+  		{% endif %}
+  {% endif %}
+  {% for sub_link in link.links %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_link.title }}: {{ sub_link.levels }}<br/>
+  	{% if found == false and pagename == sub_link.title %}
+  		{% assign breadcrumb =  breadcrumb | append: " > " | append: sub_link.title %}
+  		{% assign found = true %}
+  	{% else %}
+  		{% assign firstchild = sub_link.title %}
+  	{% endif %}
+    {% for sub_sub_link in sub_link.links %}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_sub_link.title }}: {{ sub_sub_link.levels }}<br/>
+  		{% if found == false and pagename == sub_sub_link.title %}
+  			{% assign breadcrumb = breadcrumb | append: " > " | append: firstchild | append: " > " | append: sub_sub_link.title %}
+  			{% assign found = true %}
+  		{% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+ <br/><br/>
+
+Server: <br/>
+
+{% if found == false %}
+{% assign root = "" %}
+{% assign firstchild = "" %}
+{% endif %}
+{% assign menu = linklists.server-storage-solutions %}
+
+{{ menu.title }}: {{ menu.levels }}<br/>
+{% for link in menu.links %}
+  &nbsp;&nbsp;&nbsp;&nbsp;{{ link.title }}: {{ link.levels }}<br/>
+    {% if link.title == pagename %}
+		{% assign breadcrumb = pagename %}
+  		{% assign found = true %}
+	{% else %}
+  		{% if found == false %}
+  			{% assign breadcrumb = link.title %}
+  		{% endif %}
+  {% endif %}
+  {% for sub_link in link.links %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_link.title }}: {{ sub_link.levels }}<br/>
+  	{% if found == false and pagename == sub_link.title %}
+  		{% assign breadcrumb =  breadcrumb | append: " > " | append: sub_link.title %}
+  		{% assign found = true %}
+  	{% else %}
+  		{% assign firstchild = sub_link.title %}
+  	{% endif %}
+    {% for sub_sub_link in sub_link.links %}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_sub_link.title }}: {{ sub_sub_link.levels }}<br/>
+  		{% if found == false and pagename == sub_sub_link.title %}
+  			{% assign breadcrumb = breadcrumb | append: " > " | append: firstchild | append: " > " | append: sub_sub_link.title %}
+  			{% assign found = true %}
+  		{% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+<br/><br/>
+Embedded: <br/>
+  
+  {% assign menu = linklists.embedded-system-solutions %}
+ {% if found == false %}
+{% assign root = "" %}
+{% assign firstchild = "" %}
+{% endif %}
+{{ menu.title }}: {{ menu.levels }}<br/>
+{% for link in menu.links %}
+  &nbsp;&nbsp;&nbsp;&nbsp;{{ link.title }}: {{ link.levels }}<br/>
+    {% if link.title == pagename %}
+		{% assign breadcrumb = pagename %}
+  		{% assign found = true %}
+	{% else %}
+  		{% if found == false %}
+  			{% assign breadcrumb = link.title %}
+  		{% endif %}
+  {% endif %}
+  {% for sub_link in link.links %}
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_link.title }}: {{ sub_link.levels }}<br/>
+  	{% if found == false and pagename == sub_link.title %}
+  		{% assign breadcrumb =  breadcrumb | append: " > " | append: sub_link.title %}
+  		{% assign found = true %}
+  	{% else %}
+  		{% assign firstchild = sub_link.title %}
+  	{% endif %}
+    {% for sub_sub_link in sub_link.links %}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ sub_sub_link.title }}: {{ sub_sub_link.levels }}<br/>
+  		{% if found == false and pagename == sub_sub_link.title %}
+  			{% assign breadcrumb = breadcrumb | append: " > " | append: firstchild | append: " > " | append: sub_sub_link.title %}
+  			{% assign found = true %}
+  		{% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+ <br/><br/><br/> 
+   Breadcrumb: {{ breadcrumb }}
+<br/><br/> 
+</div>
+
+<!-- End testing uncomplicated category-based breadcrumb -->

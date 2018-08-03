@@ -1,0 +1,48 @@
+@media all and (min-width:767px){
+  /* The sticky class is added to the navbar with JS when it reaches its scroll position */
+    .sticky {
+      position: fixed;
+      top: 70px;
+      width: 100%;
+      background-color: white;
+      z-index: 9996;
+    }
+
+    .sticky-pricing {
+      position: fixed;
+      top: 120px;
+      background-color: white;
+      z-index: 9996;
+      left: 65%;
+      min-width:220px;
+      max-width:400px;
+    }
+
+  /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+    .sticky + .tab-content {
+      padding-top: 60px;
+    }
+
+}
+   #jstree-result .sticky {
+      position: fixed;
+      top: 70px;
+      width: 100%;
+      background-color: white;
+      z-index: 9996;
+    }
+
+#configuration-price {
+    border: 1px solid #ddd;
+    border-radius: 10px 10px 10px 10px;
+    width: 33.3%;
+}
+
+.bold_option_element, select[name^="properties["] {
+    width: 90%;
+    min-width: 200px;
+}
+
+.jumpstart-selector select {
+  width: 80%;
+}

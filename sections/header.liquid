@@ -1,0 +1,299 @@
+<div data-section-id="{{ section.id }}" data-section-type="header-section">
+  {% if section.settings.show_announcement %}
+    {% if section.settings.home_page_only == false or template.name == 'index' %}
+      <style>
+        .announcement-bar {
+          background-color: {{ section.settings.announcement_color_bg }};
+        }
+
+        .announcement-bar--link:hover {
+          {% assign brightness = section.settings.announcement_color_bg | color_brightness %}
+
+          {% if brightness <= 192 %}
+            {% assign lightenAmount = 255 | minus: brightness | divided_by: 255 | times: 16 %}
+            background-color: {{ section.settings.announcement_color_bg | color_lighten: lightenAmount }};
+          {% else %}
+            {% assign darkenAmount = 255 | divided_by: brightness | times: 8 %}
+            background-color: {{ section.settings.announcement_color_bg | color_darken: darkenAmount }};
+          {% endif %}
+        }
+
+        .announcement-bar__message {
+          color: {{ section.settings.announcement_color_text }};
+        }
+      </style>
+
+      {% if section.settings.announcement_link == blank %}
+        <div class="announcement-bar">
+      {% else %}
+        <a href="{{ section.settings.announcement_link }}" class="announcement-bar announcement-bar--link">
+      {% endif %}
+
+        <p class="announcement-bar__message">{{ section.settings.announcement_text | escape }}</p>
+
+      {% if section.settings.announcement_link == blank %}
+        </div>
+      {% else %}
+        </a>
+      {% endif %}
+
+    {% endif %}
+  {% endif %}
+
+  <header class="site-header site-header--{{ section.settings.menu_style }} animate {% if section.settings.menu_text_color %}{{ section.settings.menu_text_color }}{% endif %}" role="banner" data-menu-style="{{ section.settings.menu_style }}">
+    <div class="wrapper">
+      {% if section.settings.logo_use_inverted and section.settings.logo-inverted != blank %}
+        {% assign inverted_logo_in_use = true %}
+      {% endif %}
+
+      {% if section.settings.logo != blank or inverted_logo_in_use %}
+        {%if section.settings.logo_max_width != blank %}
+          {% capture logo_image_width %}{{ section.settings.logo_max_width | remove: 'px' | escape }}{% endcapture %}
+        {% else %}
+          {% assign logo_image_width = '200' %}
+        {% endif %}
+      {% endif %}
+
+      {% if template.name == 'index' %}
+        <h1 class="site-header__logo {% if section.settings.logo or inverted_logo_in_use %} display-table use-image" style="max-width:{{ logo_image_width }}px;"{% endif %} itemscope itemtype="http://schema.org/Organization">
+      {% else %}
+        <div class="h1 site-header__logo {% if section.settings.logo or inverted_logo_in_use %} display-table use-image" style="max-width:{{ logo_image_width }}px;"{% endif %} itemscope itemtype="http://schema.org/Organization">
+      {% endif %}
+
+      {% if section.settings.logo or inverted_logo_in_use %}
+        {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        {% capture image_size_for_url %}{{ logo_image_width }}x{% endcapture %}
+        {% if inverted_logo_in_use and template.name == 'index'  %}
+          <a href="/" itemprop="url" class="site-header__logo-link--inverted display-table-cell">
+          <img src="{{ section.settings.logo-inverted | img_url: image_size_for_url }}"
+            srcset="{{ section.settings.logo-inverted | img_url: image_size_for_url }} 1x, {{ section.settings.logo-inverted | img_url: image_size_for_url, scale: 2 }} 2x"
+            alt="{{ section.settings.logo.alt | default: shop.name }}"
+            itemprop="logo">
+          </a>
+        {% endif %}
+        {% if section.settings.logo %}
+          <a href="/" itemprop="url" class="site-header__logo-link display-table-cell{% if inverted_logo_in_use and template.name == 'index' %} logo--hidden{% endif %}">
+            <img src="{{ section.settings.logo | img_url: image_size_for_url }}"
+              srcset="{{ section.settings.logo | img_url: image_size_for_url }} 1x, {{ section.settings.logo | img_url: image_size_for_url, scale: 2 }} 2x"
+              alt="{{ section.settings.logo.alt | default: shop.name }}"
+              itemprop="logo">
+          </a>
+        {% else %}
+          <a href="/" itemprop="url" class="site-header__logo-text site-header__logo-link display-table-cell{% if inverted_logo_in_use and template.name == 'index' %} logo--hidden{% endif %}">{{ shop.name }}</a>
+        {% endif %}
+      {% else %}
+        <a href="/" itemprop="url" class="site-header__logo-text">{{ shop.name }}</a>
+      {% endif %}
+
+      {% if template.name == 'index' %}
+        </h1>
+      {% else %}
+        </div>
+      {% endif %}
+
+      <nav class="nav-bar" id="navBar" role="navigation">
+        <button id="menu-closer" class="lines-button lines-button--close" aria-controls="navBar" aria-expanded="true">
+          <span class="fallback-text">{{ 'layout.navigation.close_menu' | t }}</span>
+          <span class="lines" aria-hidden="true"></span>
+        </button>
+        <ul class="site-nav" id="AccessibleNav">
+          {% for link in linklists[section.settings.main_linklist].links %}
+            {% if link.links != blank %}
+              <li class="site-nav--has-dropdown" aria-haspopup="true">
+                <button class="site-nav__link" aria-expanded="false">
+                  {{ link.title | escape }}
+                  <span class="icon icon-plus" aria-hidden="true">{% include 'asset_svg' with 'plus' %}</span>
+                  <span class="icon icon-minus" aria-hidden="true">{% include 'asset_svg' with 'minus' %}</span>
+                </button>
+                <ul class="site-nav__dropdown">
+                  <div>
+                    {% for childlink in link.links %}
+                      {% if childlink.links != blank %}
+                        <li class="site-nav--has-dropdown" aria-haspopup="true">
+                          <button class="site-nav__link site-nav__link--child" aria-expanded="false">
+                            {{ childlink.title | escape }}
+                            <span class="icon icon-plus" aria-hidden="true">{% include 'asset_svg' with 'plus' %}</span>
+                            <span class="icon icon-minus" aria-hidden="true">{% include 'asset_svg' with 'minus' %}</span>
+                          </button>
+                          <ul class="site-nav__dropdown site-nav__dropdown--grandchilds">
+                            <div>
+                              {% for grandchildlink in childlink.links %}
+                                <li>
+                                  <a href="{{ grandchildlink.url }}" class="site-nav__link site-nav__link--grandchild{% if grandchildlink.active %} site-nav--active{% endif %}" {% if grandchildlink.active %}aria-current="page"{% endif %}>{{ grandchildlink.title | escape }}</a>
+                                </li>
+                              {% endfor %}
+                            </div>
+                          </ul>
+                        </li>
+                      {% else %}
+                        <li>
+                          <a href="{{ childlink.url }}" class="site-nav__link site-nav__link--child{% if childlink.active %} site-nav--active{% endif %}" {% if childlink.active %}aria-current="page"{% endif %}>{{ childlink.title | escape }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                  <span class="arrow">&nbsp;</span>
+                </ul>
+              </li>
+            {% else %}
+              <li>
+                <a href="{{ link.url }}" class="site-nav__link{% if link.active %} site-nav--active{% endif %}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title | escape }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+
+          {% unless section.settings.menu_product == blank %}
+            <li class="btn__buy"><a href="{{ all_products[section.settings.menu_product].url }}" class="btn btn--outline {% if section.settings.menu_style == 'classic' %} btn--small btn--dark {% else %} btn--regular btn--light {% endif %}">{{ 'layout.navigation.buy_button' | t }} <span class="visually-hidden">{{ all_products[section.settings.menu_product].title }}</span> {{ all_products[section.settings.menu_product].price | money_without_trailing_zeros }}</a></li>
+          {% endunless %}
+
+          {% if cart.item_count > 0 %}
+            <li class="btn__cart">
+              <a href="/cart">
+                <span class="icon" aria-hidden="true">{% unless cart.item_count > 99 %}{{ cart.item_count }}{% endunless %}{% include 'asset_svg' with 'cart' %}</span>
+                <span class="text">{{ 'layout.navigation.shopping_cart' | t }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+          {% if shop.customer_accounts_enabled %}
+            <li class="btn__account">
+              <a href="/account{% unless customer %}/login{% endunless %}">
+                <span class="icon" aria-hidden="true">{% include 'asset_svg' with 'account' %}</span>
+                <span class="text">{{ 'layout.navigation.my_account' | t }}</span>
+              </a>
+            </li>
+          {% endif %}
+
+        </ul>
+
+      </nav>
+
+      <button id="menu-opener" class="lines-button" aria-controls="navBar" aria-expanded="false">
+        <span class="fallback-text">{{ 'layout.navigation.open_menu' | t }}</span>
+        <span class="lines" aria-hidden="true"></span>
+      </button>
+
+    </div>
+  </header>
+</div>
+
+{% schema %}
+  {
+  	"name": "Header",
+  	"settings": [
+  		{
+  			"type": "header",
+  			"content": "Logo"
+  		},
+  		{
+  			"type": "image_picker",
+  			"id": "logo",
+  			"label": "Logo image",
+  			"info": "200px wide .png recommended"
+  		},
+  		{
+  			"type": "checkbox",
+  			"id": "logo_use_inverted",
+  			"label": "Use a home page logo"
+  		},
+  		{
+  			"type": "image_picker",
+  			"id": "logo-inverted",
+  			"label": "Home page logo",
+  			"info": "Shown on slideshow"
+  		},
+  		{
+  			"type": "text",
+  			"id": "logo_max_width",
+  			"label": "Custom logo width (in pixels)",
+  			"default": "250"
+  		},
+  		{
+  			"type": "header",
+  			"content": "Navigation"
+  		},
+  		{
+  			"type": "link_list",
+  			"id": "main_linklist",
+  			"label": "Menu",
+  			"default": "main-menu"
+  		},
+  		{
+  			"type": "select",
+  			"id": "menu_style",
+  			"label": "Menu style",
+  			"options": [
+  				{
+  					"value": "classic",
+  					"label": "Classic"
+  				},
+  				{
+  					"value": "drawer",
+  					"label": "Drawer"
+  				}
+  			]
+  		},
+  		{
+  			"type": "select",
+  			"id": "menu_text_color",
+  			"label": "Classic menu color",
+  			"options": [
+  				{
+  					"value": "is-dark",
+  					"label": "Dark"
+  				},
+  				{
+  					"value": "is-light",
+  					"label": "Light"
+  				}
+  			],
+  			"info": "Use this when the menu is over dark sections for better visibility"
+  		},
+  		{
+  			"type": "product",
+  			"id": "menu_product",
+  			"label": "Product for \"buy now\" button"
+  		},
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "home_page_only",
+        "label": "Home page only",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement text",
+        "default": "Announce something here"
+      },
+      {
+        "type": "url",
+        "id": "announcement_link",
+        "label": "Announcement link",
+        "info": "Optional"
+      },
+      {
+        "type": "color",
+        "id": "announcement_color_bg",
+        "label": "Bar",
+        "default": "#429c80"
+      },
+      {
+        "type": "color",
+        "id": "announcement_color_text",
+        "label": "Text",
+        "default": "#fff"
+      }
+  	]
+  }
+{% endschema %}

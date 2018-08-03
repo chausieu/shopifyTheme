@@ -1,0 +1,133 @@
+<div class="container">
+
+  <div class="two-thirds" style="overflow: auto; float: left;">
+  Search: <input type ="text" id="jstree-search" class="input" style="display:block; padding:4px; border-radius:4px; border:1px solid silver;">
+  
+    <div id="jstree-download">
+	<ul>
+       
+      <li>{{pages['server-storage-solutions'].title}}
+        <ul>
+        {% for collection in collections %}
+        
+      {% if collection.metafields.global['collection'] == "server-storage" %}
+          <li>{{collection.title}}
+        	<ul>	
+            {% for product in collection.products %}
+              <li id="{{product.id}}">{{product.title}}</li>
+              {% endfor %}
+            </ul>
+        	</li>
+          
+        {% endif %}
+      {% endfor %}
+      </ul>
+      </li>
+      
+      <li>{{pages['embedded-system-solutions'].title}}
+        <ul>
+        {% for collection in collections %}
+        
+      {% if collection.metafields.global['collection'] == "embedded-system" %}
+          <li>{{collection.title}}
+        	<ul>	
+            {% for product in collection.products %}
+              <li id="{{product.id}}">{{product.title}}</li>
+              {% endfor %}
+            </ul>
+        	</li>
+          
+        {% endif %}
+      {% endfor %}
+      </ul>
+      </li>
+      
+      <li>{{pages['industrial-display-solutions'].title}}
+	<ul>
+        {% for collection in collections %}
+        
+      {% if collection.metafields.global['collection'] == "industrial-display" %}
+          <li>{{collection.title}}
+        	<ul>	
+            {% for product in collection.products %}
+              <li id="{{product.id}}">{{product.title}}</li>
+              {% endfor %}
+            </ul>
+        	</li>
+          
+        {% endif %}
+      {% endfor %}
+      </ul>
+      </li> 
+  </ul>
+      </div>
+
+</div>
+  <div class="sticky-parent">
+    <div class="sticky-spacer"> 
+    <div id="jstree-result" class="jstree-parent" >
+      {% for collection in collections %}
+      {% for product in collection.products %}
+      
+ 	<div id="{{product.id}}-display" class="jstree-result">
+  		 <h3> {{product.title}} </h3>
+        {% for data in product.metafields["global"] %}
+        {% assign keys = data[0] | split: "_"%}
+          {% if keys[0] == "resource" %}
+          {% assign index = data[1] | split: ", " | trim %}
+   <div style="border: 1px solid silver; padding: 5px;">			
+   <h3 style="padding: 5px;" ><u>{{keys[1]}}</u></h3>
+            
+                {%unless index[0] contains "https://"%}
+          {% for value in index %}
+            <h4 style=" padding: 5px">{{value}}</h4>
+              {% assign downloads = pages['downloads'].metafields.global[value] | split: "| " %}
+              {% for download in downloads %}
+              {% assign i = download | split: ", " %}
+               <a href="{{i[0]}}" target="_blank">{{i[1]}}</a><br>
+              
+              {% endfor %}
+     			<br>
+            
+          {% endfor %}
+          {% else %}
+
+            <a href= "{{index[0]}}" target="_blank">{{index[1]}}</a>
+            {% endunless %}
+   </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endfor %}
+      {% endfor %}
+    </div>
+</div>
+  </div>
+</div>
+
+{% assign def = 0 %}
+  {% if def == 1 %}
+<div id="jstree_demo_div">
+<ul>
+  {% for collection in collections %}
+  <li> {{collection.title}} 
+  <ul>
+    {% for product in collection.products %}
+    <li> {{product.title}} 
+    <ul>
+      {% for metadata in product.metafields.global %}
+      {% assign download = metadata[0] | split: "_"%}
+      {% if download[0] == "resource" %}
+      <li> {{download[1]}}</li>
+      {% endif %}
+      {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+    </ul>
+   </li>
+  {% endfor %}
+</ul>  
+</div>
+  {% endif %}
+

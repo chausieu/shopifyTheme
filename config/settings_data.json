@@ -1,0 +1,462 @@
+{
+  "current": {
+    "color_body_bg": "#ffffff",
+    "color_body_bg_alt": "#f9f9f9",
+    "color_primary": "#76004e",
+    "color_secondary": "#76004e",
+    "color_borders": "#e9e9e9",
+    "color_text_titles": "#76004e",
+    "color_text_general": "#4e4e4e",
+    "color_text_alternate": "#4e4e4e",
+    "color_text_buttons": "#ffffff",
+    "color_drawer_background": "#76004e",
+    "color_drawer_text": "#ffffff",
+    "color_footer_bg": "#404040",
+    "color_footer_text": "#ffffff",
+    "typography_headings": "Montserrat,sans-serif",
+    "typography_body": "Raleway,sans-serif",
+    "favicon": "shopify:\/\/shop_images\/premio_favicon.png",
+    "share_image": "",
+    "social_twitter": "",
+    "social_facebook": "",
+    "social_google": "",
+    "social_youtube": "",
+    "social_vimeo": "",
+    "social_pinterest": "",
+    "social_snapchat": "",
+    "social_tumblr": "",
+    "social_instagram": "",
+    "social_linkedin": "",
+    "social_flickr": "",
+    "social_email": "",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/premio-logo_26dbb109-5330-4c79-8757-cb4a47855fd6.png",
+          "logo_use_inverted": false,
+          "logo-inverted": "shopify:\/\/shop_images\/premio-logo_26dbb109-5330-4c79-8757-cb4a47855fd6.png",
+          "logo_max_width": "250",
+          "main_linklist": "main-menu",
+          "menu_style": "classic",
+          "menu_text_color": "is-light",
+          "menu_product": "",
+          "show_announcement": false,
+          "home_page_only": true,
+          "announcement_text": "Announce something here",
+          "announcement_link": "",
+          "announcement_color_bg": "#429c80",
+          "announcement_color_text": "#fff"
+        }
+      },
+      "video": {
+        "type": "video",
+        "settings": {
+          "heading": "",
+          "video_url": "https:\/\/vimeo.com\/274960092",
+          "video_text_color": "video-text-dark",
+          "cover_image": "shopify:\/\/shop_images\/video_splash-shopify_345050fe-01d7-49cd-9d48-126b370d5da2.png"
+        }
+      },
+      "feature-rows": {
+        "type": "feature-rows",
+        "blocks": {
+          "feature-rows-0": {
+            "type": "text",
+            "settings": {
+              "home-featured-align": "left-img",
+              "image": "",
+              "home-featured-title": "Scalable, Embedded, Resilient",
+              "home-featured-content": "<p>Premio designs and builds world-class computing technologies&mdash;enterprise servers,&nbsp;embedded systems&nbsp;and&nbsp;touch panel solutions&mdash;for businesses with highly specialized needs, some of them among the world&rsquo;s top technology companies. We are passionate problem-solvers. We look at clients&rsquo; challenges from every angle, not just technology&mdash;their business models, operations, design practices, manufacturing processes and supply chains&mdash;to improvise our way to a better way of doing things, to the right answer. We blend seamlessly into their culture, operations and manufacturing protocols and &ldquo;never say &lsquo;impossible&rsquo;&rdquo; to the demanding challenges that other companies pass on, on account of their complexity or difficulty.<\/p>",
+              "home-featured-btn-label": "",
+              "home-featured-btn-url": ""
+            }
+          }
+        },
+        "block_order": [
+          "feature-rows-0"
+        ],
+        "settings": {}
+      },
+      "feature-columns": {
+        "type": "feature-columns",
+        "blocks": {
+          "feature-columns-0": {
+            "type": "text",
+            "settings": {
+              "home-features-icon": "server",
+              "home-features-title": "Server Storage Solutions",
+              "home-features-content": "<p>Premio offers a full range of fully-validated server and storage platforms purpose-built as&nbsp;building blocks for&nbsp;<a href=\"https:\/\/premioinc.com\/products\/servers\/\" title=\"https:\/\/premioinc.com\/products\/servers\/\">server and storage appliances<\/a>, such as&nbsp;All-Flash-Array for CDN&nbsp;or Scale-Out&nbsp;HPC storage,&nbsp;High-Availability Software-Defined-Storage, Object-Storage for IPDC Warm or Cold&nbsp;Storage, Virtual-Desktop-Infrastructure and Hyper-Converged-Infrastructure etc.<\/p>",
+              "width": "33%"
+            }
+          },
+          "feature-columns-1": {
+            "type": "text",
+            "settings": {
+              "home-features-icon": "hdd-o",
+              "home-features-title": "Embedded System Solutions",
+              "home-features-content": "<p>Premio&rsquo;s&nbsp;<a href=\"http:\/\/premioinc.com\/products\/embedded-system-solutions\/\">industrial PC and embedded technologies<\/a>&nbsp;provide industrial-grade platforms to a wide&nbsp;array of segments including: kiosk, medical, factory automation, test equipment, networking,&nbsp;retail, and many others. Premio&rsquo;s unique ability to offer solutions from board-level to system-level allows us to provide a one-stop shop for customers looking for robust industrial computer&nbsp;platforms to support their applications<\/p>",
+              "width": "33%"
+            }
+          },
+          "feature-columns-2": {
+            "type": "text",
+            "settings": {
+              "home-features-icon": "tablet",
+              "home-features-title": "Industrial Display Solutions",
+              "home-features-content": "<p>Premio&rsquo;s&nbsp;<a href=\"http:\/\/premioinc.com\/products\/industrial-display-solutions\/\">industrial display solutions<\/a>&nbsp;provide customers with a quick Time-to-Market advantage in&nbsp;the interactive display business. The&nbsp;touch screen size can range 5&rdquo; to 106&rdquo;, with the support of all the latest touch technologies,&nbsp;including Projected Capacitive (PCAP), Infrared, Optical, SAW, and resistive touch. Services include large-screen P-Cap touch&nbsp;film laminating, air bonding touch module to LCM.<\/p>",
+              "width": "33%"
+            }
+          }
+        },
+        "block_order": [
+          "feature-columns-0",
+          "feature-columns-1",
+          "feature-columns-2"
+        ],
+        "settings": {
+          "title": "Innovative and fully-validated computing products for OEM and ISV"
+        }
+      },
+      "kickstarter": {
+        "type": "kickstarter",
+        "disabled": true,
+        "settings": {
+          "home-kickstarter-title": "Crowdfunding",
+          "home-kickstarter-subtitle": "Campaign tracker",
+          "home-kickstarter-style": "pie",
+          "home-kickstarter-bg": "",
+          "home-kickstarter-percent": "75",
+          "home-kickstarter-amount": "$1000",
+          "home-kickstarter-backers": "10",
+          "home-kickstarter-url": "https:\/\/www.shopify.com"
+        }
+      },
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "slideshow-0": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          },
+          "slideshow-1": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          },
+          "slideshow-2": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "slideshow-0",
+          "slideshow-1",
+          "slideshow-2"
+        ],
+        "settings": {}
+      },
+      "faq": {
+        "type": "faq",
+        "disabled": true,
+        "blocks": {
+          "faq-0": {
+            "type": "text",
+            "settings": {
+              "home-faq-title": "Question and answer",
+              "home-faq-content": "<p>This section doesn’t currently include any content. <b>Add content to this section using the sidebar.<\/b><\/p>"
+            }
+          },
+          "faq-1": {
+            "type": "text",
+            "settings": {
+              "home-faq-title": "Question and answer",
+              "home-faq-content": "<p>This section doesn’t currently include any content. <b>Add content to this section using the sidebar.<\/b><\/p>"
+            }
+          },
+          "faq-2": {
+            "type": "text",
+            "settings": {
+              "home-faq-title": "Question and answer",
+              "home-faq-content": "<p>This section doesn’t currently include any content. <b>Add content to this section using the sidebar.<\/b><\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "faq-0",
+          "faq-1",
+          "faq-2"
+        ],
+        "settings": {
+          "title": "FAQ"
+        }
+      },
+      "home-product": {
+        "type": "home-product",
+        "disabled": true,
+        "settings": {
+          "featured_product": "",
+          "enable_payment_button": false
+        }
+      },
+      "featured-blog": {
+        "type": "featured-blog",
+        "disabled": true,
+        "settings": {
+          "title": "Blog",
+          "blog": "news",
+          "post_limit": 3
+        }
+      },
+      "featured-content": {
+        "type": "featured-content",
+        "blocks": {
+          "featured-content-0": {
+            "type": "text",
+            "settings": {
+              "block_title": "Design capabilities, innovative technologies and supply chain expertise covering key industries",
+              "content": "<p>Virtualization, VDI&nbsp;Private Cloud&nbsp;Digital Content Streaming&nbsp;I\/O AccelerationsData Center Storage&nbsp;High-Performance ComputingHyper-converged Solutions.<\/p>\n<p><\/p>\n<p>Kiosks &amp; digital signage medical systems, industrial automation, internet of things (IoT), multimedia and gaming, transportation test instruments.<\/p>\n<p><\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "featured-content-0"
+        ],
+        "settings": {
+          "home-page-bg": "",
+          "home-page-background-overlay": false
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_logo": "",
+          "footer_logo_max_width": "50",
+          "footer_newsletter_enable": false,
+          "footer_linklist": "footer",
+          "footer_payment_enable": false
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "blog_sharing_enabled": true,
+          "blog_rss_enabled": false
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "grid": "3",
+          "rows": "6"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "enable_payment_button": false,
+          "social_sharing_products": true
+        }
+      },
+      "product-template-variants": {
+        "type": "product-template-variants",
+        "settings": {
+          "enable_payment_button": false,
+          "social_sharing_products": true
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "cart_notes_enable": true
+        }
+      }
+    },
+    "content_for_index": [
+      "video",
+      "feature-rows",
+      "feature-columns",
+      "featured-content",
+      "kickstarter",
+      "faq",
+      "slideshow",
+      "home-product",
+      "featured-blog"
+    ]
+  },
+  "presets": {
+    "Jumpstart": {
+      "color_body_bg": "#ffffff",
+      "color_body_bg_alt": "#f9f9f9",
+      "color_primary": "#33856B",
+      "color_secondary": "#141414",
+      "color_borders": "#e9e9e9",
+      "color_text_titles": "#111111",
+      "color_text_general": "#343434",
+      "color_text_alternate": "#7a7a7a",
+      "color_text_buttons": "#ffffff",
+      "color_drawer_background": "#000000",
+      "color_drawer_text": "#ffffff",
+      "color_footer_bg": "#000000",
+      "color_footer_text": "#757575",
+      "typography_headings": "Montserrat,sans-serif",
+      "typography_body": "Raleway,sans-serif",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {}
+        },
+        "video": {
+          "type": "video",
+          "settings": {}
+        },
+        "feature-rows": {
+          "type": "feature-rows",
+          "blocks": {
+            "feature-rows-0": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "feature-rows-0"
+          ],
+          "settings": {}
+        },
+        "feature-columns": {
+          "type": "feature-columns",
+          "blocks": {
+            "feature-columns-0": {
+              "type": "text",
+              "settings": {}
+            },
+            "feature-columns-1": {
+              "type": "text",
+              "settings": {}
+            },
+            "feature-columns-2": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "feature-columns-0",
+            "feature-columns-1",
+            "feature-columns-2"
+          ],
+          "settings": {}
+        },
+        "kickstarter": {
+          "type": "kickstarter",
+          "settings": {}
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "image",
+              "settings": {}
+            },
+            "slideshow-2": {
+              "type": "image",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1",
+            "slideshow-2"
+          ],
+          "settings": {}
+        },
+        "faq": {
+          "type": "faq",
+          "blocks": {
+            "faq-0": {
+              "type": "text",
+              "settings": {}
+            },
+            "faq-1": {
+              "type": "text",
+              "settings": {}
+            },
+            "faq-2": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "faq-0",
+            "faq-1",
+            "faq-2"
+          ],
+          "settings": {}
+        },
+        "home-product": {
+          "type": "home-product",
+          "settings": {}
+        },
+        "featured-blog": {
+          "type": "featured-blog",
+          "settings": {
+            "blog": "news"
+          }
+        },
+        "featured-content": {
+          "type": "featured-content",
+          "blocks": {
+            "featured-content-0": {
+              "type": "text",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "featured-content-0"
+          ],
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "video",
+        "feature-rows",
+        "feature-columns",
+        "featured-content",
+        "kickstarter",
+        "faq",
+        "slideshow",
+        "home-product",
+        "featured-blog"
+      ]
+    }
+  }
+}

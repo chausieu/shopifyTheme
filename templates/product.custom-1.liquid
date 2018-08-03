@@ -1,0 +1,12 @@
+<!--begin-custom-css-->
+  {{ 'custom.css' | asset_url | stylesheet_tag }} 
+<!--end-custom-css-->
+<!--begin-sticky-tab-css-->
+  {{ 'sticky-tab.css' | asset_url | stylesheet_tag }} 
+<!--end-sticky-tab-css-->
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/custom-1-product-template.liquid
+{% endcomment %}
+
+{% section 'custom-1-product-template' %}
+{{'sticky-tab.js' | asset_url | script_tag}}

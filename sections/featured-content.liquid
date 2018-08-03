@@ -1,0 +1,68 @@
+<div id="home-page" class="index-section home-section">
+	<div class="home-page-content overlay-{{ section.settings.home-page-background-overlay }}">
+		{% if section.settings.home-page-bg %}
+			<span class="prlx-bg prlx-bg--{{ section.id }} no-js lazyload overlay-{{ section.settings.home-page-background-overlay }}"
+				data-bgset="{% include 'bgset', image: section.settings.home-page-bg %}"
+				data-sizes="auto"
+				data-parent-fit="cover"></span>
+			<noscript>
+				<span class="prlx-bg prlx-bg--{{ section.id }} overlay-{{ section.settings.home-page-background-overlay }}" style="background-image: url('{{ section.settings.home-page-bg | img_url: '2048x2048' }}')"></span>
+			</noscript>
+		{% endif %}
+			{% for block in section.blocks %}
+			<div class="wrapper wrapper--margins" {{ block.shopify_attributes }}>
+				{% if block.settings.block_title != blank %}<h2 class="home-section-title">{{ block.settings.block_title | escape }}</h2>{% endif %}
+				<div class="rte">
+					{{ block.settings.content }}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% schema %}
+	{
+		"name": "Image with text overlay",
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "home-page-bg",
+				"label": "Background image"
+			},
+			{
+				"type": "checkbox",
+				"id": "home-page-background-overlay",
+				"label": "Add white overlay on background image"
+			}
+		],
+		"blocks": [
+			{
+			 "type": "text",
+			 "name": "Text",
+			 "settings": [
+					{
+						"type": "text",
+						"id": "block_title",
+						"label": "Heading",
+						"default": "Talk about your brand"
+					},
+					{
+					 "type": "richtext",
+					 "id": "content",
+					 "label": "Text",
+					 "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+				 }
+			 ]
+		 }
+	 ],
+		"presets": [{
+			"name": "Image with text overlay",
+			"category": "Image",
+			"blocks": [
+				{
+					"type": "text"
+				}
+			]
+		}]
+	}
+{% endschema %}

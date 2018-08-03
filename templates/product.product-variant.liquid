@@ -1,0 +1,9 @@
+<!--begin-custom-css-->
+  {{ 'custom.css' | asset_url | stylesheet_tag }} 
+<!--end-custom-css-->
+
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% section 'product-template-variants' %}
